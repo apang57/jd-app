@@ -1,0 +1,56 @@
+// 修改输入框的全局样式
+.el-form {
+  .el-form-item {
+    .el-form-item__content {
+      .el-select {
+        width: 100%;
+      }
+
+      .el-input {
+        .el-input__inner {
+          border: 0;
+          border-radius: 0;
+          height: 30px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+// 修改按钮公共样式
+.el-button {
+  padding: 0 15px;
+  border-radius: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+// 修改全部背景颜色
+.el-container {
+  /deep/ .el-main {
+    background: rgb(246,246,246);
+  }
+}
+
+// 修改confirm样式
+.el-message-box__wrapper {
+  .el-message-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    .el-message-box__btns {
+      .el-button:nth-child(1) {
+        border-color: rgb(219, 179, 128);
+        border-radius: 5px;
+      }
+      .el-button:nth-child(2) {
+        border-radius: 5px;
+        background-color: rgb(219, 179, 128);
+        border-color: rgb(219, 179, 128);
+      }
+    }
+  }
+}
