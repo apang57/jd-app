@@ -22,14 +22,19 @@
             <el-rate
               class="star"
               v-model="item.assessRank"
-              show-score
               disabled
-              text-color="#ff9900">
+              >
             </el-rate>
           </div>
-          <div class="msg">{{item.assessContent}}</div>
+          <div class="msg" v-show="item.assessContent">{{item.assessContent}}</div>
+          <div class="msg" v-show="!item.assessContent">该用户未填文字评价~</div>
         </div>
       </li>
+      <div class="content" v-show="listLength === 0">
+        <div class="noneContent">
+          暂无评价
+        </div>
+      </div>
     </ul>
   </div>
 </template>
@@ -43,7 +48,8 @@ export default {
     return {
       list: [],
       // all perfect good differ
-      evaluateBtnType: 'all'
+      evaluateBtnType: 'all',
+      listLength: 0
     }
   },
   mounted () {
@@ -67,6 +73,8 @@ export default {
         ...data
       }).then(data => {
         this.list = data.data
+        this.listLength = this.list.length
+        console.log('listLength', this.listLength)
       })
     }
   }
@@ -84,7 +92,12 @@ export default {
     line-height: 50px;
     padding: 0 10px;
     box-sizing: border-box;
-
+    z-index: 10;
+    position: fixed;
+    background: rgb(246,246,246);
+    width: 100%;
+    height: 50px;
+    top: 49px;
     span {
       padding: 0 10px;
     }
@@ -100,6 +113,11 @@ export default {
     background: #fff;
     margin: 0 auto;
     border-radius: 10px;
+    margin-top: 50px;
+    .noneContent {
+      padding: 10px;
+      text-align: center;
+    }
 
     li {
       display: flex;
@@ -118,7 +136,6 @@ export default {
       .content {
         flex: 1;
         padding: 10px;
-
         .title {
           display: flex;
           justify-content: space-between;
@@ -134,7 +151,7 @@ export default {
             }
           }
           .el-rate {
-            flex: 1;
+            flex: 0.8;
             width: 100%;
             height: 20px;
             // position: absolute;
@@ -146,14 +163,13 @@ export default {
                 font-size: 15px;
               }
             }
-            /deep/ .el-rate__text {
-              margin-left: 10px;
-              font-size: 15px;
-              // height: 20px;
-              // display: inline;
-              line-height: 20px;
-            }
           }
+        }
+        .msg {
+          width: 100%;
+          white-space:normal;
+          word-break:break-all;
+          word-wrap:break-word;
         }
       }
     }

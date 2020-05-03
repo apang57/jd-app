@@ -174,6 +174,24 @@ export default new Router({
             goBack: '/mine',
             goBackShow: true,
             headerHide: false,
+            footerShow: false
+          }
+        },
+        // 店长订单列表
+        {
+          path: '/order-list-store',
+          name: 'order-list-store',
+          component: () => import(/* webpackChunkName: "order-list-store" */ '@/pages/order-list-store/index.vue'),
+          meta: {
+            title: [
+              {
+                titleName: '我的订单',
+                toPath: '/order-list-store'
+              }
+            ],
+            // goBack: '/mine',
+            goBackShow: false,
+            headerHide: false,
             footerShow: true
           }
         },

@@ -3,7 +3,7 @@
     <el-container>
       <el-header height="50px" v-show="!meta.headerHide">
         <div class="user-info">
-          <img class="back-btn" src="../assets/左.png" @click="back" v-show="meta.goBackShow"/>
+          <img class="back-btn" src="../assets/left.png" @click="back" v-show="meta.goBackShow"/>
           <span
             v-for="(item, index) in titleList"
             :key="index"
@@ -22,10 +22,10 @@
 
       <el-footer v-show="meta.footerShow">
         <!-- 店长 -->
-        <div @click="$router.push({path: '/order-list'})" v-show="userType === 2">
+        <div @click="$router.push({path: '/order-list-store'})" v-show="userType === 2">
           <!-- <img v-show="currentPath !== '/comm-home'" src="../assets/u1075.png" alt=""> -->
           <img src="../assets/u1075.png" alt="">
-          <div :style="{color: currentPath === '/order-list' ? '#C39862' : '#333333'}">订单</div>
+          <div :style="{color: currentPath === '/order-list-store' ? '#C39862' : '#333333'}">订单</div>
         </div>
         <div @click="$router.push({path: '/driver-info'})" v-show="userType === 2">
           <!-- <img v-show="currentPath !== '/comm-home'" src="../assets/u1075.png" alt=""> -->
@@ -36,10 +36,15 @@
         <!-- 司机 -->
         <div @click="$router.push({path: '/driver-shop-info'})" v-show="userType === 3">
           <!-- <img v-show="currentPath !== '/comm-home'" src="../assets/u1075.png" alt=""> -->
-          <img src="../assets/home2.png" alt="">
+          <img src="../assets/home3.png" alt="">
           <div :style="{color: currentPath === '/driver-shop-info' ? '#C39862' : '#333333'}">门店</div>
         </div>
-
+        <!-- 店长 -->
+        <div @click="$router.push({path: '/mine'})" v-show="userType === 2 || userType === 3">
+          <img v-show="currentPath !== '/mine'" src="../assets/mine3.png" alt="">
+          <img v-show="currentPath === '/mine'" src="../assets/mine3.png" alt="">
+          <div :style="{color: currentPath === '/mine' ? '#C39862' : '#333333'}">我的</div>
+        </div>
         <!-- 普通用户 -->
         <div @click="$router.push({path: '/comm-home'})" v-show="userType === 4">
           <img v-show="currentPath !== '/comm-home'" src="../assets/home2.png" alt="">
@@ -56,7 +61,7 @@
           <img v-show="currentPath === '/shop-car'" src="../assets/shop_car.png" alt="">
           <div :style="{color: currentPath === '/shop-car' ? '#C39862' : '#333333'}">购物车</div>
         </div>
-        <div @click="$router.push({path: '/mine'})">
+        <div @click="$router.push({path: '/mine'})" v-show="userType === 4">
           <img v-show="currentPath !== '/mine'" src="../assets/mine2.png" alt="">
           <img v-show="currentPath === '/mine'" src="../assets/mine.png" alt="">
           <div :style="{color: currentPath === '/mine' ? '#C39862' : '#333333'}">我的</div>

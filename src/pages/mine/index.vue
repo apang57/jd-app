@@ -39,11 +39,11 @@
     <div class="content">
         <div class="con-item" @click="toPage('/order-list')" v-show="userType === 4">
             <div>
-                <img src="../../assets/订单.png" alt="">
+                <img src="../../assets/order.png" alt="">
             </div>
             <div><span>我的订单</span></div>
             <div>
-                <img src="../../assets/右.png" alt="">
+                <img src="../../assets/right.png" alt="">
             </div>
         </div>
         <div
@@ -51,11 +51,11 @@
           @click="toPage('/change-password')"
           v-show="userType === 4 || userType === 2 || userType === 3">
             <div>
-                <img src="../../assets/修改密码.png" alt="">
+                <img src="../../assets/editPassword.png" alt="">
             </div>
             <div><span>修改密码</span></div>
             <div>
-                <img src="../../assets/右.png" alt="">
+                <img src="../../assets/right.png" alt="">
             </div>
         </div>
         <div
@@ -63,11 +63,11 @@
           @click="toPage('/change-store-code')"
           v-show="userType === 4">
             <div>
-                <img src="../../assets/邀请码.png" alt="">
+                <img src="../../assets/inviteCode.png" alt="">
             </div>
             <div><span>修改店铺邀请码</span></div>
             <div>
-                <img src="../../assets/右.png" alt="">
+                <img src="../../assets/right.png" alt="">
             </div>
         </div>
         <div
@@ -75,11 +75,11 @@
           @click="toLogin"
           v-show="userType === 4 || userType === 2 || userType === 3">
             <div>
-                <img src="../../assets/退出.png" alt="">
+                <img src="../../assets/logOut.png" alt="">
             </div>
             <div><span>退出登录</span></div>
             <div>
-                <img src="../../assets/右.png" alt="">
+                <img src="../../assets/right.png" alt="">
             </div>
         </div>
     </div>

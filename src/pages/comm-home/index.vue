@@ -5,6 +5,7 @@
         <el-carousel-item v-for="(item, index) in slideshowList" :key="index">
           <img :src="item.slideshowRoute" alt="" @click="toDetailPage(item)">
         </el-carousel-item>
+        <img v-show="!slideshowListLength" style="width: 100%;height: 100%;" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=291872238,3072063863&fm=26&gp=0.jpg" alt="">
       </el-carousel>
     </div>
 
@@ -19,6 +20,9 @@
         <div class="book-info">{{item.goodName}}</div>
         <div>￥{{item.sellPrice}}</div>
       </li>
+      <div v-show="!commListLength" class="listNone">
+        暂无热门商品
+      </div>
     </ul>
   </div>
 </template>
@@ -31,7 +35,9 @@ export default {
   data () {
     return {
       slideshowList: [],
-      commList: []
+      slideshowListLength: 0,
+      commList: [],
+      commListLength: 0
     }
   },
   mounted () {
@@ -43,12 +49,14 @@ export default {
     getSliderPicList () {
       req('listSlideshow', {}).then(data => {
         this.slideshowList = data.data
+        this.slideshowListLength = data.data.length
         console.log('slideshowList:', this.slideshowList)
       })
     },
     getHotComm () {
       req('listHotGood', {}).then(data => {
         this.commList = data.data
+        this.commListLength = data.data.length
         console.log('commList:', this.commList)
       })
     },
@@ -103,7 +111,13 @@ export default {
   flex-wrap: wrap;
   width: 100%;
   // margin-top: 10px;
-
+  .listNone {
+    width: 95%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
   li {
     position: relative;
     width: 48%;

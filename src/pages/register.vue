@@ -3,7 +3,7 @@
     <div class="header">
         <div>注册</div>
         <div class="btn-back">
-            <img src="../assets/左.png" alt="" @click="toLogin">
+            <img src="../assets/left.png" alt="" @click="toLogin">
         </div>
     </div>
     <div class="logo">
@@ -12,11 +12,11 @@
     <el-form ref="form" :model="formData" :rules="formRules" inline label-width="80px">
       <div class="sex">
             <div :class="{'active':isActive === 1}"   @click="chooseSex(1)">
-                <img src="../assets/男.png" alt="">
+                <img src="../assets/male.png" alt="">
                 <p class="sexText">男</p>
             </div>
             <div :class="{'active':isActive === 2}" @click="chooseSex(2)">
-                <img src="../assets/女.png" alt="">
+                <img src="../assets/female.png" alt="">
                 <p>女</p>
             </div>
         </div>
@@ -27,23 +27,23 @@
         <!-- </el-form-item> -->
         </div>
       <el-form-item prop="userAcct">
-        <img src="../assets/用户名.png" alt="">
+        <img src="../assets/userName.png" alt="">
         <el-input v-model="formData.userAcct" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="userPassword">
-        <img src="../assets/修改密码.png" alt="">
+        <img src="../assets/editPassword.png" alt="">
         <el-input type="password" v-model="formData.userPassword" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item prop="confirmUserPassword">
-        <img src="../assets/确认密码.png" alt="">
+        <img src="../assets/password2.png" alt="">
         <el-input type="password" v-model="formData.confirmUserPassword" placeholder="确认密码"></el-input>
       </el-form-item>
       <el-form-item prop="tel">
-        <img src="../assets/手机.png" alt="">
+        <img src="../assets/tel.png" alt="">
         <el-input v-model.number="formData.tel" placeholder="手机号码"></el-input>
       </el-form-item>
       <el-form-item prop="userName">
-        <img src="../assets/姓名.png" alt="">
+        <img src="../assets/name.png" alt="">
         <el-input v-model="formData.userName" placeholder="姓名"></el-input>
       </el-form-item>
       <!-- <el-form-item prop="sex">
@@ -53,15 +53,15 @@
         </el-radio-group>
       </el-form-item> -->
       <el-form-item prop="idcard">
-        <img src="../assets/身份证.png" alt="">
+        <img src="../assets/idCard.png" alt="">
         <el-input v-model="formData.idcard" placeholder="身份证号"></el-input>
       </el-form-item>
       <el-form-item prop="mail">
-        <img src="../assets/邮箱.png" alt="">
+        <img src="../assets/mail.png" alt="">
         <el-input v-model="formData.mail" placeholder="邮箱"></el-input>
       </el-form-item>
       <el-form-item prop="inviteCode">
-        <img src="../assets/邀请码.png" alt="">
+        <img src="../assets/inviteCode.png" alt="">
         <el-input v-model="formData.inviteCode" placeholder="邀请码"></el-input>
       </el-form-item>
       <div class="btn-box">

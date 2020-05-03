@@ -4,7 +4,7 @@
         <div class="con-top">
             <div class="top-item">
                 <div class="top-img-con">
-                    <img src="../../assets/卡车.png" style="width: 18px;">
+                    <img src="../../assets/truk.png" style="width: 18px;">
                 </div>
                 <span>取货门店:{{orderDetail.storeName}}</span>
             </div>

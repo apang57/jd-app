@@ -153,7 +153,7 @@ export default {
           // align-items: center;
           padding: 0 5%;
           width: 40%;
-          // margin-bottom: 10px;
+          margin-bottom: 10px;
 
           img {
             width: 100%;

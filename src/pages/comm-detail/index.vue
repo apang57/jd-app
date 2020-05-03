@@ -6,13 +6,16 @@
 
     <div class="book-detail">
       <div class="book-price">￥{{commDetailData.sellPrice}}</div>
-      <!-- <div class="book-name">{{commDetailData.goodName}}</div> -->
+      <div class="book-name">{{commDetailData.goodName}}</div>
       <div class="book-Describe">{{commDetailData.goodIntroduce}}</div>
       <div class="comm-evaluate"></div>
-      <div class="comm-evaluate">
+      <div class="comm-evaluate" v-show="commDetailData.goodRank">
         商品评分:
         <el-rate v-model="commDetailData.goodRank" disabled></el-rate>
-        <span>{{commDetailData.goodRank}}分</span>
+        <span>{{Number(commDetailData.goodRank)}}分</span>
+      </div>
+      <div class="comm-evaluate" v-show="!commDetailData.goodRank">
+        商品评分: <a style="font-size: 16px; margin-left: 10px">此商品暂无评价！</a>
       </div>
       <div class="count-box">
         <span>数量</span>
@@ -78,6 +81,8 @@ export default {
     selectGood () {
       req('selectGood', {goodCode: JSON.parse(sessionStorage.getItem('currentComm')).goodCode}).then(data => {
         this.commDetailData = data.data
+        this.commDetailData.goodRank = Number(data.data.goodRank)
+        console.log('goodRank:', this.commDetailData.goodRank)
       })
     },
     toShopCar () {
@@ -154,7 +159,9 @@ export default {
   border-radius: 10px;
   width: 95%;
   margin: 10px auto 0;
-
+  .book-name {
+    padding-top: 5px;
+  }
   .book-price {
     font-size: 22px;
     color: red;

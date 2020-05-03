@@ -6,11 +6,11 @@
 
     <el-form :model="formData" ref="form" :rules="formRules" inline label-width="65px">
       <el-form-item prop="username">
-        <img src="../assets/用户名.png"/>
+        <img src="../assets/userName.png"/>
         <el-input v-model="formData.username" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <img src="../assets/修改密码.png" alt="">
+        <img src="../assets/editPassword.png" alt="">
         <el-input type="password" v-model="formData.password" placeholder="密码"></el-input>
       </el-form-item>
     </el-form>
@@ -86,9 +86,15 @@ export default {
         if (data.data === 4) {
           this.$router.push({path: '/home'})
         } else if (data.data === 2) {
-          this.$router.push({path: '/order-list'})
-        } else {
+          this.$router.push({path: '/order-list-store'})
+        } else if (data.data === 3) {
           this.$router.push({path: '/driver-shop-info'})
+        } else if (data.data === 1) {
+          this.$message({
+            type: 'error',
+            message: '管理员账号无法登录！'
+          })
+          return false
         }
         console.log('data', data)
       })

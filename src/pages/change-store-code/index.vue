@@ -5,7 +5,7 @@
         <input type="text" v-model="inviteCode" placeholder="请输入邀请码">
     </div>
     <div class="btn" @click="changeStoreCode">
-        <img src="../../assets/按钮.png" >
+        <img src="../../assets/button.png" >
         <span>确认</span>
     </div>
   </div>
@@ -24,12 +24,11 @@ export default {
   methods: {
     changeStoreCode () {
       if (!this.inviteCode) {
-        this.$message.info('请先输入邀请码')
-
+        this.$message.info('请输入邀请码')
         return
       }
 
-      req('changeStoreCode', {changeStoreCode: this.inviteCode}).then(data => {
+      req('changeStoreCode', {inviteCode: this.inviteCode}).then(data => {
         if (data.code === 0) {
           this.$message.success(data.msg + ', 请重新登陆')
 

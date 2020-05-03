@@ -166,6 +166,7 @@ export default {
           ...data
         }).then(data => {
           console.log(data)
+          this.listLength = data.data.length
           if (data.code === 0) {
             this.list = data.data
           } else {
@@ -222,7 +223,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    // padding-bottom: 60px;
+    padding-bottom: 60px;
 }
   .leader {
       height: 64px;
@@ -253,7 +254,7 @@ export default {
       }
   }
   .listNone {
-    width: 90%;
+    width: 95%;
     background: #fff;
     padding: 10px;
     border-radius: 10px;

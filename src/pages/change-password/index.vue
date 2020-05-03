@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="btn">
-        <img src="../../assets/按钮.png" >
+        <img src="../../assets/button.png" >
         <span @click="submit">确认</span>
     </div>
   </div>

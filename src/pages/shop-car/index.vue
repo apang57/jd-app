@@ -27,6 +27,9 @@
           </div>
         </div>
       </li>
+      <div v-show="!listLength" class="listNone">
+        购物车空空如也~
+      </div>
     </ul>
 
     <div class="close-count">
@@ -60,7 +63,8 @@ export default {
     return {
       allChecked: false,
       totalPrice: 0,
-      list: []
+      list: [],
+      listLength: 0
     }
   },
   mounted () {
@@ -70,6 +74,7 @@ export default {
     getShopCarList () {
       req('getShopData', {}).then(data => {
         console.log('getShopData:', data.data)
+        this.listLength = data.data.length
         this.list = data.data.map(item => {
           return Object.assign({}, item, {checked: false})
         })
@@ -231,15 +236,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-bottom: 110px;
-}
+  .container {
+    padding-bottom: 110px;
+  }
   .book-list {
     width: 95%;
     overflow: auto;
     margin: 10px auto 0;
     // transform: translate(-50%, 0);
-
+    .listNone {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
     li {
       display: flex;
       justify-content: flex-start;
@@ -435,18 +445,19 @@ export default {
     >div:first-child {
       height: 50px;
       line-height: 50px;
-      font-size: 14px;
+      font-size: 16px;
       flex: 1;
       margin-left: 10px;
 
       span {
         font-size: 18px;
         color: red;
+        margin-left: 10px;
       }
     }
 
     button {
-      width: 80px;
+      width: 20%;
       height: 40px;
       background: rgb(219, 179, 128);
       color: #fff;
