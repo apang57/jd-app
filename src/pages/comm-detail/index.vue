@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="book-banner">
-      <img :src="commDetailData.pictureUrl" alt="">
+      <img v-show="commDetailData.pictureUrl" :src="commDetailData.pictureUrl" alt="">
+      <img v-show="!commDetailData.pictureUrl" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=291872238,3072063863&fm=26&gp=0.jpg" alt="">
     </div>
 
     <div class="book-detail">
@@ -29,7 +30,7 @@
       <div class="address">
         <span>送至</span>
         <span class="iconfont iconhtmal5icon14"></span>
-        <span>{{address}}</span>
+        <span>{{commDetailData.storeName}}</span>
       </div>
     </div>
 
@@ -58,6 +59,7 @@ export default {
         sellPrice: '',
         pictureUrl: '',
         goodCode: '',
+        storeName: '',
         goodRank: 0
       },
       bookCount: 1,
@@ -89,7 +91,9 @@ export default {
       this.$router.push({path: '/shop-car'})
     },
     payNow () {
-      if (JSON.parse(sessionStorage.getItem('StoreCode'))) {
+      console.log('StoreCode', sessionStorage.getItem('StoreCode'))
+      // console.log('1111111111111111111111111')
+      if (sessionStorage.getItem('StoreCode') !== 'undefined') {
         this.$confirm('确定立即购买该商品吗?').then(() => {
           req('payNow', {
             goodCodeList: this.commDetailData.goodCode,

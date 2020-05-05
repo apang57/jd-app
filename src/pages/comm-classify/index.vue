@@ -8,8 +8,8 @@
         </li>
       </div>
     </ul>
-
     <ul class="book-classify-conteiner">
+    <div v-show="commListLength === 0" class="listNone">此分类暂无商品</div>
       <li class="book-classify-item" v-for="(item, index) in commList" :key="index">
         <div class="book-classify-item-title">{{item.typeName}}</div>
         <ul class="book-list">
@@ -36,7 +36,8 @@ export default {
       oneClassifyList: [],
       currentClassify: {},
       commList: [
-      ]
+      ],
+      commListLength: 0
     }
   },
   mounted () {
@@ -57,6 +58,8 @@ export default {
 
       req('getTwoClassify', {typeCode: item.typeCode}).then(data => {
         this.commList = data.data
+        this.commListLength = data.data.length
+        console.log('commListLength:', this.commListLength)
       })
     },
     getCommDetail (item) {
@@ -124,7 +127,13 @@ export default {
     bottom: 0;
     overflow: auto;
     width: 80%;
-
+    .listNone {
+      width: 90%;
+      background: white;
+      margin:10px auto 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
     .book-classify-item {
       width: 90%;
       margin: 0 auto;

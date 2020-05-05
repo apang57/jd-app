@@ -10,7 +10,7 @@ const config = {
     method: 'post'
   },
   getDriverInfo: {
-    url: '/app/user/selectdriver',
+    url: '/app/user/selectDriver',
     method: 'post'
   }
 }

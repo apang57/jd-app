@@ -139,9 +139,9 @@ export default {
         .title {
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          // align-items: center;
           width: 100%;
-          height: 60px;
+          height: 50px;
 
           .user-info {
             flex: 2;

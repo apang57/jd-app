@@ -221,9 +221,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-    // padding-bottom: 60px;
-}
   .leader {
       height: 64px;
       width: 100%;

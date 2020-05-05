@@ -84,7 +84,7 @@
             <div class="btn" @click.stop="changeOrderStatus(item, 2)" v-show="item.orderState === 3">
                 <span>取消到货</span>
             </div>
-            <div class="btn" @click.stop="changeOrderStatus(item, 5)" v-show="item.orderState === 3 || item.orderState === 4">
+            <div class="btn" @click.stop="changeOrderStatus(item, 7)" v-show="item.orderState === 3 || item.orderState === 4">
                 <span>确认取货</span>
             </div>
             <div class="btn" @click.stop="changeOrderStatus(item, 4)" v-show="item.orderState === 5 || item.orderState === 7">
@@ -152,7 +152,7 @@ export default {
           ...data
         }).then(data => {
           if (data.code === 0) {
-            this.listLength = data.data.length
+            // this.listLength = data.data.length
             this.list = data.data.map(item => {
               return Object.assign({}, item)
             })
@@ -185,22 +185,6 @@ export default {
     },
     // 修改订单状态
     changeOrderStatus (item, changeStatus) {
-      // let orderType = ''
-
-      // if (item.orderState === '0') {
-      //   orderType = '已下单'
-      // } else if (item.orderState === '1') {
-      //   orderType = '已取消'
-      // } else if (item.orderState === '2') {
-      //   orderType = '已到货'
-      // } else if (item.orderState === '3') {
-      //   orderType = '已取货'
-      // } else if (item.orderState === '4') {
-      //   orderType = '已完成未评价'
-      // } else {
-      //   orderType = '已完成已评价'
-      // }
-
       this.$confirm('确定进行该操作吗?').then(() => {
         req('changeOrderStatus', {
           orderCode: item.orderCode,

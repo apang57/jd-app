@@ -7,7 +7,7 @@
     <el-form :model="formData" ref="form" :rules="formRules" inline label-width="65px">
       <el-form-item prop="username">
         <img src="../assets/userName.png"/>
-        <el-input v-model="formData.username" placeholder="用户名"></el-input>
+        <el-input v-model="formData.username" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <img src="../assets/editPassword.png" alt="">
@@ -16,7 +16,7 @@
     </el-form>
     <div class="btn-box">
       <el-button @click="login" class="login-btn" type="primary">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</el-button>
-      <el-button class="register-btn" type="text" @click="$router.push({path: '/register'})">我要注册</el-button>
+      <div class="register-btn" type="text"><span @click="$router.push({path: '/register'})">我要注册</span></div>
     </div>
   </div>
 </template>
@@ -137,6 +137,8 @@ export default {
 .btn-box {
   margin: 50px auto 0;
   width: 70%;
+  // display: flex;
+  // flex-direction: column;
   .login-btn {
     background: rgb(219, 179, 128);
     font-size: 20px;
@@ -147,7 +149,6 @@ export default {
   }
   .register-btn {
     color: rgb(147, 147, 147);
-    width: 100%;
     font-size: 14px;
     margin-top: 10px;
     padding: 0;

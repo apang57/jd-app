@@ -118,24 +118,29 @@ export default {
       }).map(item => {
         return item.cartCode
       }).toString()
-
-      req('addOrder', {
-        goodCodeList: goodCodeList,
-        sellPriceList: sellPriceList,
-        totalNumberList: totalNumberList,
-        cartCodeList: cartCodeList
-        // storeId: JSON.parse(sessionStorage.getItem('roleInfo')).storeId
-      }).then(data => {
-        if (data.code === 0) {
-          this.$message.success(data.msg)
-
-          setTimeout(() => {
-            this.$router.push({path: '/order-list'})
-          })
-        } else {
-          this.$message.error(data.msg)
-        }
-      })
+      if (sessionStorage.getItem('StoreCode') !== 'undefined') {
+        req('addOrder', {
+          goodCodeList: goodCodeList,
+          sellPriceList: sellPriceList,
+          totalNumberList: totalNumberList,
+          cartCodeList: cartCodeList
+          // storeId: JSON.parse(sessionStorage.getItem('roleInfo')).storeId
+        }).then(data => {
+          if (data.code === 0) {
+            this.$message.success(data.msg)
+            setTimeout(() => {
+              this.$router.push({path: '/order-list'})
+            })
+          } else {
+            this.$message.error(data.msg)
+          }
+        })
+      } else {
+        console.log('toAddStoreCode')
+        this.$confirm('请前往绑定店铺邀请码').then(() => {
+          this.$router.push({path: '/change-store-code'})
+        })
+      }
     },
     deleteShopCar () {
       let payCommList = this.list.filter(item => {
