@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-show="listLength === 0" class="listNone">
+      暂无负责的门店
+    </div>
     <div class="box" v-for="(item, index) in list" :key="index">
       <div class="shop-info">
         <img src="../../assets/u919.png" alt="">
@@ -28,7 +31,8 @@ import req from '@/api/driver-shop-info.js'
 export default {
   data () {
     return {
-      list: []
+      list: [],
+      listLength: 0
     }
   },
   mounted () {
@@ -38,6 +42,7 @@ export default {
     getDriverInfo () {
       req('getDriverInfo', {}).then(data => {
         this.list = data.data
+        this.listLength = data.data.length
         console.log(data)
       })
     }
@@ -46,6 +51,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.listNone {
+  width: 90%;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px auto 0;
+}
 .box {
   padding: 10px;
   border-bottom: 1px solid #ddd;

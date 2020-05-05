@@ -3,7 +3,7 @@
     <div class="leader">
         <ul>
             <li :class="{active: this.orderType === 'all'}" @click="getOrderList(0, 'all')">全部订单</li>
-            <li :class="{active: this.orderType === 'payed'}" @click="getOrderList(0, 'payed')">已付款</li>
+            <li :class="{active: this.orderType === 'payed'}" @click="getOrderList('2', 'payed')">已付款</li>
             <li :class="{active: this.orderType === 'pickup'}" @click="getOrderList('2,3,4', 'pickup')">待取货</li>
             <li :class="{active: this.orderType === 'confirm'}" @click="getOrderList('5,7,8', 'confirm')">已完成</li>
         </ul>
@@ -238,7 +238,7 @@ export default {
       }
   }
   .listNone {
-    width: 95%;
+    width: 90%;
     background: #fff;
     padding: 10px;
     border-radius: 10px;

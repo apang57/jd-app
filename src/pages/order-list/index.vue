@@ -3,8 +3,8 @@
     <div class="leader">
         <ul>
             <li :class="{active: this.orderType === 'all'}" @click="getOrderList(0, 'all')">全部订单</li>
-            <li :class="{active: this.orderType === 'payed'}" @click="getOrderList(0, 'payed')">已付款</li>
-            <li :class="{active: this.orderType === 'pickup'}" @click="getOrderList('2,3,4', 'pickup')">待取货</li>
+            <li :class="{active: this.orderType === 'payed'}" @click="getOrderList('2', 'payed')">已付款</li>
+            <li :class="{active: this.orderType === 'pickup'}" @click="getOrderList('3,4', 'pickup')">待取货</li>
             <li :class="{active: this.orderType === 'confirm'}" @click="getOrderList('5,7,8', 'confirm')">已完成</li>
         </ul>
     </div>
@@ -66,7 +66,7 @@
             <div class="btn" @click.stop="evaluate(item)" v-show="item.orderState === 7">
                 <span>评价</span>
             </div>
-            <div class="btn" @click.stop="changeOrderStatus(item, 7)" v-show="item.orderState === 3">
+            <div class="btn" @click.stop="changeOrderStatus(item, 7)" v-show="item.orderState === 3 || item.orderState === 4">
                 <span>确认收货</span>
             </div>
         </div>
@@ -112,27 +112,9 @@ export default {
     userType () {
       return JSON.parse(sessionStorage.getItem('roleInfo'))
     }
-    // orderType () {
-    //   if (this.orderDetail.orderState === '0') {
-    //     return '已下单'
-    //   } else if (this.orderDetail.orderState === '1') {
-    //     return '已取消'
-    //   } else if (this.orderDetail.orderState === '2') {
-    //     return '已到货'
-    //   } else if (this.orderDetail.orderState === '3') {
-    //     return '已取货'
-    //   } else if (this.orderDetail.orderState === '4') {
-    //     return '已完成未评价'
-    //   } else {
-    //     return '已完成已评价'
-    //   }
-    // }
   },
   mounted () {
     this.getOrderList('0', 'all')
-    if (JSON.parse(sessionStorage.getItem('roleInfo')) === 4) {
-      console.log('11111111111111')
-    }
   },
   methods: {
     //   用户获取订单
@@ -184,22 +166,6 @@ export default {
     },
     // 修改订单状态
     changeOrderStatus (item, changeStatus) {
-      // let orderType = ''
-
-      // if (item.orderState === '0') {
-      //   orderType = '已下单'
-      // } else if (item.orderState === '1') {
-      //   orderType = '已取消'
-      // } else if (item.orderState === '2') {
-      //   orderType = '已到货'
-      // } else if (item.orderState === '3') {
-      //   orderType = '已取货'
-      // } else if (item.orderState === '4') {
-      //   orderType = '已完成未评价'
-      // } else {
-      //   orderType = '已完成已评价'
-      // }
-
       this.$confirm('确定进行该操作吗?').then(() => {
         req('changeOrderStatus', {
           orderCode: item.orderCode,
@@ -209,7 +175,7 @@ export default {
           if (data.code === 0) {
             this.$message.success(data.msg)
 
-            this.getOrderList('', this.orderType)
+            this.getOrderList('', 'all')
           } else {
             this.$message.error(data.msg)
           }

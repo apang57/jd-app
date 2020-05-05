@@ -46,13 +46,14 @@ export default {
 .container {
   width: 95%;
   // padding-left: 15px;
-  margin: 10px auto 0   e;
+  margin: 10px auto 0;
   .listNone {
     width: 100%;
     background: white;
-    margin:10px auto 0;
+    margin:0 auto;
     padding: 10px;
     border-radius: 10px;
+    text-align: center;
     box-sizing: border-box;
   }
   .box {

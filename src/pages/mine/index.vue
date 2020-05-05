@@ -146,10 +146,11 @@ export default {
       this.$router.push({path: path})
     },
     toLogin () {
-      sessionStorage.clear('userInfo')
-      sessionStorage.clear('roleInfo')
-      sessionStorage.clear('currentComm')
-      sessionStorage.clear('StoreCode')
+      // sessionStorage.clear('userInfo')
+      // sessionStorage.clear('roleInfo')
+      // sessionStorage.clear('currentComm')
+      // sessionStorage.clear('StoreCode')
+      sessionStorage.clear()
       this.$router.push('/login')
     }
   }

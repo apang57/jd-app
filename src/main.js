@@ -17,3 +17,15 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+router.beforeEach((to, from, next) => {
+  let userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+  if (userInfo && userInfo.access_token) {
+    next()
+  } else if (to.path === '/login') {
+    next()
+  } else if (to.path === '/register') {
+    next()
+  } else {
+    next('/login')
+  }
+})
